@@ -1,7 +1,8 @@
+import math
 import numpy as np
 import random, os
 from utils import *
-import time , sys
+import time, sys
 import pickle
 
 
@@ -901,20 +902,20 @@ if __name__ == "__main__":
 
     import random 
 
-    nboxes = 5000 #Number of boxes in which to divide the bounding box of the given set of points
+     #Number of boxes in which to divide the bounding box of the given set of points
 
     #SAVE THE OUTPUT?
     SAVE_DICT = False
     folder = os.path.abspath("./Data")
     save_name = "myDict" #Automatically adds "_Nxxx_txx.pkl" N = number of points, t = threshold
 
-    points = np.load("Data/simple_tree.npy")
-    
+    points = np.load("Data/sample_7_clean.npy")
+    nboxes = int(len(points)/10)
     make_plot(points)
 
     print("Getting ~", nboxes, "boxes for the", len(points), "points!")
     t0 = time.perf_counter()
-    boxes = get_boxes(nboxes,points)
+    boxes = get_boxes(nboxes, points)
     t1 =time.perf_counter()
     print("\tTime:", round(t1-t0,3),"seconds!")
 
@@ -929,7 +930,7 @@ if __name__ == "__main__":
 
 
     # #make OCTREE
-    ts = [16] #[8,16,24,32,64,128]
+    ts = [32] #[8,16,24,32,64,128]
 
     for t in ts:
 
